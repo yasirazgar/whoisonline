@@ -1,0 +1,23 @@
+<div class="form">
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+    <%= devise_error_messages! %>
+
+    <h3> <%= "#{current_user.name_display} - #{t('home.account_settings')}" %> </h3>
+    <%= f.email_field(:email, :placeholder => t('user.email'), autofocus: true) %>
+
+    <%= f.text_field(:first_name, :placeholder => t('user.first_name')) %>
+    <%= f.text_field(:last_name, :placeholder => t('user.last_name')) %>
+    <div class=''>
+      <%= f.password_field(:current_password, :placeholder => t('user.current_password'), autocomplete: "off" )%>
+    </div>
+
+    <%= f.submit(t(:update), :class => 'button') %>
+
+  <% end -%>
+  <%= button_to(t('home.delete_account'), registration_path(resource_name),
+      :data => { confirm: t('home.cancel_confirm')},
+      :class => 'delete button',
+      :method => :delete )%>
+  <%= button_to(t('home.back'), root_path, :method => :get)%>
+</div>
+
