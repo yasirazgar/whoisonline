@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   private
 
   def update_user_activity
-    current_user.try(:touch)
+    current_user.update_attribute(:status, User::Status::ONLINE) if current_user
   end
 
 end
